@@ -68,8 +68,8 @@
           "team1Player2": "5",
           "team2Player1": "6",
           "team2Player2": "7",
-          "team1Score": null,
-          "team2Score": null
+          "team1Score": 17,
+          "team2Score": 8
         },
         {
           "id": 6,
@@ -84,5 +84,5 @@
     }
   ],
   "createdAt": "2026-02-07T12:46:06.141Z",
-  "updatedAt": "2026-02-07T13:35:41.839Z"
+  "updatedAt": "2026-02-07T13:35:49.032Z"
 }
