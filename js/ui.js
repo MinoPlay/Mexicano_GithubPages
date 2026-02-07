@@ -138,27 +138,50 @@ const UI = (function () {
     /**
      * Render match cards for a specific round
      */
-    function renderMatches(round, canEdit) {
+    function renderMatches(round, canEdit, rankedPlayers = []) {
         if (!round) return;
+
+        // Create a map for quick rank lookup
+        const rankMap = {};
+        rankedPlayers.forEach(p => {
+            rankMap[p.name] = p.rank;
+        });
+
+        // Ensure matches are ordered by the ranks of players in them
+        // (Top players/Court 1 at the top)
+        const sortedMatches = [...round.matches].sort((a, b) => {
+            const getMinRank = (match) => {
+                const players = [match.team1Player1, match.team1Player2, match.team2Player1, match.team2Player2];
+                return Math.min(...players.map(p => rankMap[p] || 999));
+            };
+            return getMinRank(a) - getMinRank(b);
+        });
 
         elements.roundIndicator.textContent = `Round ${round.roundNumber}`;
         const completedCount = round.matches.filter(m => Tournament.isMatchComplete(m)).length;
         elements.matchesCompleted.textContent = `${completedCount}/${round.matches.length} matches completed`;
 
-        elements.matchesContainer.innerHTML = round.matches.map(m => {
+        elements.matchesContainer.innerHTML = sortedMatches.map((m, index) => {
             const isComplete = Tournament.isMatchComplete(m);
             const winner = isComplete ? (m.team1Score > m.team2Score ? 1 : 2) : 0;
+
+            const formatPlayer = (name) => {
+                const rank = rankMap[name];
+                const rankDisplay = rank ? `<span class="player-rank">#${rank}</span>` : '';
+                const winnerClass = winner === (name === m.team1Player1 || name === m.team1Player2 ? 1 : 2) ? 'winner' : '';
+                return `<div class="player-name ${winnerClass}">${name} ${rankDisplay}</div>`;
+            };
 
             return `
                 <div class="match-card ${isComplete ? 'completed' : ''}" data-match-id="${m.id}" data-round="${round.roundNumber}">
                     <div class="match-header">
-                        <span>Court #${Math.ceil(m.id / (round.matches.length / (round.matches.length)))}</span>
+                        <span>Court #${index + 1}</span>
                         ${isComplete && !canEdit ? '<span>Final</span>' : ''}
                     </div>
                     <div class="match-body">
                         <div class="team team-1">
-                            <div class="player-name ${winner === 1 ? 'winner' : ''}">${m.team1Player1}</div>
-                            <div class="player-name ${winner === 1 ? 'winner' : ''}">${m.team1Player2}</div>
+                            ${formatPlayer(m.team1Player1)}
+                            ${formatPlayer(m.team1Player2)}
                         </div>
                         <div class="match-score-display">
                             ${isComplete ?
@@ -166,8 +189,8 @@ const UI = (function () {
                     '<span class="score-pending">Tap to Score</span>'}
                         </div>
                         <div class="team team-2">
-                            <div class="player-name ${winner === 2 ? 'winner' : ''}">${m.team2Player1}</div>
-                            <div class="player-name ${winner === 2 ? 'winner' : ''}">${m.team2Player2}</div>
+                            ${formatPlayer(m.team2Player1)}
+                            ${formatPlayer(m.team2Player2)}
                         </div>
                     </div>
                 </div>

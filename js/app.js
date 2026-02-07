@@ -213,12 +213,13 @@ const App = (function () {
 
         const round = currentTournament.rounds[displayedRoundIndex];
         const canEdit = Tournament.canEdit(currentTournament);
+        const rankings = Tournament.rankPlayers(currentTournament);
 
         // Enable/Disable round navigation buttons
         UI.elements.prevRoundBtn.disabled = displayedRoundIndex === 0;
         UI.elements.nextRoundBtn.disabled = displayedRoundIndex === currentTournament.rounds.length - 1;
 
-        UI.renderMatches(round, canEdit);
+        UI.renderMatches(round, canEdit, rankings);
     }
 
     /**
