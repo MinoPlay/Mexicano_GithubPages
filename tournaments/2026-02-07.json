@@ -1,0 +1,42 @@
+{
+  "name": "aa",
+  "description": "9",
+  "tournamentDate": "2026-02-07",
+  "players": [
+    "2",
+    "7",
+    "4",
+    "1",
+    "3",
+    "6",
+    "5",
+    "8"
+  ],
+  "rounds": [
+    {
+      "roundNumber": 1,
+      "matches": [
+        {
+          "id": 1,
+          "team1Player1": "2",
+          "team1Player2": "1",
+          "team2Player1": "7",
+          "team2Player2": "4",
+          "team1Score": null,
+          "team2Score": null
+        },
+        {
+          "id": 2,
+          "team1Player1": "3",
+          "team1Player2": "8",
+          "team2Player1": "6",
+          "team2Player2": "5",
+          "team1Score": null,
+          "team2Score": null
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-02-07T12:46:06.141Z",
+  "updatedAt": "2026-02-07T12:46:06.141Z"
+}
