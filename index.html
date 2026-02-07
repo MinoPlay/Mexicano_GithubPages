@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Mexicano Tournament Manager - A dynamic 2v2 padel/tennis tournament system">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Mexicano Tournament</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app" class="app-container">
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">🎾 Mexicano</h1>
+                <button id="settingsBtn" class="icon-btn" aria-label="Settings">
+                    <span class="icon">⚙️</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="mainContent" class="main-content">
+            
+            <!-- View: Tournament List -->
+            <section id="tournamentListView" class="view active">
+                <div class="view-header">
+                    <h2>Tournaments</h2>
+                    <button id="createTournamentBtn" class="btn btn-primary">
+                        <span class="icon">+</span>
+                        New Tournament
+                    </button>
+                </div>
+                <div id="tournamentList" class="tournament-list">
+                    <!-- Tournament cards will be rendered here -->
+                    <div class="empty-state">
+                        <span class="empty-icon">🏆</span>
+                        <p>No tournaments yet</p>
+                        <p class="empty-hint">Create your first tournament to get started</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- View: Create Tournament -->
+            <section id="createTournamentView" class="view">
+                <div class="view-header">
+                    <button id="backFromCreateBtn" class="icon-btn back-btn" aria-label="Back">
+                        <span class="icon">←</span>
+                    </button>
+                    <h2>New Tournament</h2>
+                </div>
+                <form id="createTournamentForm" class="form">
+                    <div class="form-group">
+                        <label for="tournamentName">Tournament Name</label>
+                        <input type="text" id="tournamentName" placeholder="e.g., Friday Night Padel" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentDate">Date</label>
+                        <input type="date" id="tournamentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerCount">Number of Players</label>
+                        <select id="playerCount" required>
+                            <option value="8">8 Players (2 Courts)</option>
+                            <option value="12">12 Players (3 Courts)</option>
+                            <option value="16">16 Players (4 Courts)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Player Names</label>
+                        <div id="playerInputs" class="player-inputs">
+                            <!-- Player input fields will be generated here -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tournamentDescription">Description (optional)</label>
+                        <textarea id="tournamentDescription" rows="2" placeholder="Add a description..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Start Tournament
+                    </button>
+                </form>
+            </section>
+
+            <!-- View: Active Tournament -->
+            <section id="activeTournamentView" class="view">
+                <div class="view-header">
+                    <button id="backFromTournamentBtn" class="icon-btn back-btn" aria-label="Back">
+                        <span class="icon">←</span>
+                    </button>
+                    <div class="round-nav">
+                        <button id="prevRoundBtn" class="icon-btn" aria-label="Previous Round">◀</button>
+                        <span id="roundIndicator" class="round-indicator">Round 1</span>
+                        <button id="nextRoundBtn" class="icon-btn" aria-label="Next Round">▶</button>
+                    </div>
+                </div>
+                <div id="roundStatus" class="round-status">
+                    <span id="matchesCompleted">0/0 matches completed</span>
+                </div>
+                <div id="matchesContainer" class="matches-container">
+                    <!-- Match cards will be rendered here -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FAB Container (Floating Action Buttons) -->
+        <div id="fabContainer" class="fab-container hidden">
+            <button id="leaderboardFab" class="fab fab-secondary" aria-label="Leaderboard">
+                <span class="fab-icon">🏆</span>
+            </button>
+            <button id="nextRoundFab" class="fab fab-primary hidden" aria-label="Next Round">
+                <span class="fab-icon">➡️</span>
+            </button>
+        </div>
+
+        <!-- Modal: Score Entry -->
+        <div id="scoreModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content score-modal">
+                <div class="modal-header">
+                    <h3 id="scoreModalTitle">Enter Score</h3>
+                    <button id="closeScoreModal" class="icon-btn" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="score-teams">
+                        <div class="score-team team1">
+                            <span id="team1Names" class="team-names">Player 1 & Player 2</span>
+                            <input type="number" id="team1ScoreInput" class="score-input" min="0" max="25" value="0">
+                        </div>
+                        <div class="score-vs">vs</div>
+                        <div class="score-team team2">
+                            <span id="team2Names" class="team-names">Player 3 & Player 4</span>
+                            <input type="number" id="team2ScoreInput" class="score-input" min="0" max="25" value="0" readonly>
+                        </div>
+                    </div>
+                    <div class="score-slider-container">
+                        <input type="range" id="scoreSlider" class="score-slider" min="0" max="25" value="0">
+                        <div class="slider-labels">
+                            <span>0</span>
+                            <span>25</span>
+                        </div>
+                    </div>
+                    <div class="quick-scores">
+                        <button type="button" class="quick-score-btn" data-score="13">13-12</button>
+                        <button type="button" class="quick-score-btn" data-score="15">15-10</button>
+                        <button type="button" class="quick-score-btn" data-score="17">17-8</button>
+                        <button type="button" class="quick-score-btn" data-score="20">20-5</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelScoreBtn" class="btn btn-secondary">Cancel</button>
+                    <button id="confirmScoreBtn" class="btn btn-primary">Confirm Score</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Leaderboard -->
+        <div id="leaderboardModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content leaderboard-modal">
+                <div class="modal-header">
+                    <h3>🏆 Leaderboard</h3>
+                    <button id="closeLeaderboardModal" class="icon-btn" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <table id="leaderboardTable" class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Player</th>
+                                <th>Pts</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>Avg</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody">
+                            <!-- Leaderboard rows will be rendered here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Settings -->
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content settings-modal">
+                <div class="modal-header">
+                    <h3>⚙️ Settings</h3>
+                    <button id="closeSettingsModal" class="icon-btn" aria-label="Close">✕</button>
+                </div>
+                <div class="modal-body">
+                    <form id="settingsForm" class="form">
+                        <div class="form-group">
+                            <label for="githubUser">GitHub Username</label>
+                            <input type="text" id="githubUser" placeholder="your-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="githubRepo">Repository Name</label>
+                            <input type="text" id="githubRepo" placeholder="tournament-data" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="githubPat">Personal Access Token</label>
+                            <input type="password" id="githubPat" placeholder="ghp_xxxxxxxxxxxx" required>
+                            <small class="form-hint">Requires 'repo' scope for private repos</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Save Settings</button>
+                    </form>
+                    <div id="configStatus" class="config-status">
+                        <!-- Configuration status will be shown here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toastContainer" class="toast-container"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/tournament.js"></script>
+    <script src="js/pairing.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
