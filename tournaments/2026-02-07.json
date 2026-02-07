@@ -58,8 +58,31 @@
           "team2Score": 9
         }
       ]
+    },
+    {
+      "roundNumber": 3,
+      "matches": [
+        {
+          "id": 5,
+          "team1Player1": "4",
+          "team1Player2": "5",
+          "team2Player1": "6",
+          "team2Player2": "7",
+          "team1Score": null,
+          "team2Score": null
+        },
+        {
+          "id": 6,
+          "team1Player1": "3",
+          "team1Player2": "1",
+          "team2Player1": "2",
+          "team2Player2": "8",
+          "team1Score": null,
+          "team2Score": null
+        }
+      ]
     }
   ],
   "createdAt": "2026-02-07T12:46:06.141Z",
-  "updatedAt": "2026-02-07T13:35:33.379Z"
+  "updatedAt": "2026-02-07T13:35:41.839Z"
 }
