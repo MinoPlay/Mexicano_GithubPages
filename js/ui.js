@@ -17,6 +17,7 @@ const UI = (function () {
         matchesContainer: document.getElementById('matchesContainer'),
 
         createTournamentBtn: document.getElementById('createTournamentBtn'),
+        createTournamentForm: document.getElementById('createTournamentForm'),
         backFromCreateBtn: document.getElementById('backFromCreateBtn'),
         backFromTournamentBtn: document.getElementById('backFromTournamentBtn'),
         settingsBtn: document.getElementById('settingsBtn'),
