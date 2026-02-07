@@ -75,7 +75,13 @@ const Config = (function () {
      * Get branch name (defaults to 'master')
      */
     function getGitHubBranch() {
-        return localStorage.getItem(STORAGE_KEYS.GITHUB_BRANCH) || DEFAULTS.BRANCH;
+        let branch = localStorage.getItem(STORAGE_KEYS.GITHUB_BRANCH);
+        // Automatic migration from old default 'master' to 'main'
+        if (branch === 'master') {
+            branch = 'main';
+            localStorage.setItem(STORAGE_KEYS.GITHUB_BRANCH, 'main');
+        }
+        return branch || DEFAULTS.BRANCH;
     }
 
     /**
