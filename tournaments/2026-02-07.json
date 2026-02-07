@@ -31,12 +31,12 @@
           "team1Player2": "8",
           "team2Player1": "6",
           "team2Player2": "5",
-          "team1Score": null,
-          "team2Score": null
+          "team1Score": 8,
+          "team2Score": 17
         }
       ]
     }
   ],
   "createdAt": "2026-02-07T12:46:06.141Z",
-  "updatedAt": "2026-02-07T12:46:26.733Z"
+  "updatedAt": "2026-02-07T12:46:31.143Z"
 }
