@@ -8,8 +8,7 @@ const Config = (function () {
     const STORAGE_KEYS = {
         GITHUB_USER: 'mexicano_github_user',
         GITHUB_REPO: 'mexicano_github_repo',
-        GITHUB_PAT: 'mexicano_github_pat',
-        GITHUB_BRANCH: 'mexicano_github_branch'
+        GITHUB_PAT: 'mexicano_github_pat'
     };
 
     // Default settings
@@ -72,23 +71,17 @@ const Config = (function () {
     }
 
     /**
-     * Get branch name (defaults to 'master')
+     * Get branch name (defaults to 'main')
      */
     function getGitHubBranch() {
-        let branch = localStorage.getItem(STORAGE_KEYS.GITHUB_BRANCH);
-        // Automatic migration from old default 'master' to 'main'
-        if (branch === 'master') {
-            branch = 'main';
-            localStorage.setItem(STORAGE_KEYS.GITHUB_BRANCH, 'main');
-        }
-        return branch || DEFAULTS.BRANCH;
+        return DEFAULTS.BRANCH;
     }
 
     /**
      * Set branch name
      */
     function setGitHubBranch(branch) {
-        localStorage.setItem(STORAGE_KEYS.GITHUB_BRANCH, branch);
+        // Hardcoded to main
     }
 
     /**
@@ -101,11 +94,10 @@ const Config = (function () {
     /**
      * Save all GitHub configuration at once
      */
-    function saveGitHubConfig(user, repo, pat, branch = DEFAULTS.BRANCH) {
+    function saveGitHubConfig(user, repo, pat) {
         setGitHubUser(user);
         setGitHubRepo(repo);
         setGitHubPAT(pat);
-        setGitHubBranch(branch);
     }
 
     /**
@@ -115,7 +107,6 @@ const Config = (function () {
         localStorage.removeItem(STORAGE_KEYS.GITHUB_USER);
         localStorage.removeItem(STORAGE_KEYS.GITHUB_REPO);
         localStorage.removeItem(STORAGE_KEYS.GITHUB_PAT);
-        localStorage.removeItem(STORAGE_KEYS.GITHUB_BRANCH);
     }
 
     /**
