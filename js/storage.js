@@ -25,7 +25,7 @@ const Storage = (function () {
             throw new Error('GitHub configuration is not complete');
         }
 
-        const url = Config.getContentsUrl(Config.getTournamentsPath());
+        const url = `${Config.getContentsUrl(Config.getTournamentsPath())}?ref=${Config.getGitHubBranch()}`;
 
         try {
             const response = await fetch(url, {
@@ -71,7 +71,7 @@ const Storage = (function () {
         }
 
         const path = Config.getTournamentFilePath(date);
-        const url = Config.getContentsUrl(path);
+        const url = `${Config.getContentsUrl(path)}?ref=${Config.getGitHubBranch()}`;
 
         try {
             const response = await fetch(url, {

@@ -123,7 +123,8 @@ const App = (function () {
             Config.saveGitHubConfig(
                 UI.elements.githubUser.value,
                 UI.elements.githubRepo.value,
-                UI.elements.githubPat.value
+                UI.elements.githubPat.value,
+                UI.elements.githubBranch.value
             );
             UI.toggleModal(UI.elements.settingsModal, false);
             UI.showToast('Settings saved successfully', 'success');
@@ -137,6 +138,7 @@ const App = (function () {
     function loadSettingsFromConfig() {
         UI.elements.githubUser.value = Config.getGitHubUser();
         UI.elements.githubRepo.value = Config.getGitHubRepo();
+        UI.elements.githubBranch.value = Config.getGitHubBranch();
         UI.elements.githubPat.value = Config.getGitHubPAT();
     }
 

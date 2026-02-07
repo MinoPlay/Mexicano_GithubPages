@@ -14,7 +14,7 @@ const Config = (function () {
 
     // Default settings
     const DEFAULTS = {
-        BRANCH: 'master',
+        BRANCH: 'main',
         TOURNAMENTS_PATH: 'tournaments'
     };
 

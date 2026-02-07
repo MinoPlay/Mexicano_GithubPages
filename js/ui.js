@@ -51,6 +51,7 @@ const UI = (function () {
         closeSettingsModal: document.getElementById('closeSettingsModal'),
         githubUser: document.getElementById('githubUser'),
         githubRepo: document.getElementById('githubRepo'),
+        githubBranch: document.getElementById('githubBranch'),
         githubPat: document.getElementById('githubPat'),
 
         toastContainer: document.getElementById('toastContainer')
