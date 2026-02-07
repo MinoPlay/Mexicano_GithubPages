@@ -160,6 +160,11 @@ body {
     width: 100%;
 }
 
+.btn-sm {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+}
+
 .icon-btn {
     background: none;
     border: none;

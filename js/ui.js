@@ -21,6 +21,7 @@ const UI = (function () {
         backFromCreateBtn: document.getElementById('backFromCreateBtn'),
         backFromTournamentBtn: document.getElementById('backFromTournamentBtn'),
         settingsBtn: document.getElementById('settingsBtn'),
+        prepopulateBtn: document.getElementById('prepopulateBtn'),
 
         roundIndicator: document.getElementById('roundIndicator'),
         matchesCompleted: document.getElementById('matchesCompleted'),
@@ -251,6 +252,36 @@ const UI = (function () {
         elements.scoreSlider.value = value;
     }
 
+    /**
+     * Prepopulate the tournament form with test data
+     */
+    function prepopulateForm() {
+        const testNames = [
+            'Alice', 'Bob', 'Charlie', 'David',
+            'Eve', 'Frank', 'Grace', 'Heidi',
+            'Ivan', 'Judy', 'Kevin', 'Lars',
+            'Mallory', 'Niaj', 'Oscar', 'Peggy'
+        ];
+
+        const nameInput = document.getElementById('tournamentName');
+        const dateInput = document.getElementById('tournamentDate');
+        const playerCountSelect = document.getElementById('playerCount');
+
+        if (nameInput) nameInput.value = 'Test Tournament ' + new Date().getHours() + ':' + new Date().getMinutes();
+        if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+
+        // Default to 8 players for quick testing
+        if (playerCountSelect) {
+            playerCountSelect.value = '8';
+            generatePlayerInputs(8);
+        }
+
+        const nameInputs = document.querySelectorAll('.player-name-input');
+        nameInputs.forEach((input, index) => {
+            input.value = testNames[index] || `Player ${index + 1}`;
+        });
+    }
+
     // Public API
     return {
         elements,
@@ -262,6 +293,7 @@ const UI = (function () {
         renderMatches,
         renderLeaderboard,
         showScoreModal,
-        updateScoreModal
+        updateScoreModal,
+        prepopulateForm
     };
 })();

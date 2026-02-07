@@ -26,6 +26,11 @@ const App = (function () {
             UI.toggleModal(UI.elements.settingsModal, true);
             UI.showToast('Please configure your GitHub settings first', 'info');
         }
+
+        // Show prepopulate button in dev mode
+        if (Config.isDevMode()) {
+            UI.elements.prepopulateBtn.classList.remove('hidden');
+        }
     }
 
     /**
@@ -60,6 +65,12 @@ const App = (function () {
 
         UI.elements.backFromCreateBtn.addEventListener('click', () => UI.showView('tournamentListView'));
         UI.elements.backFromTournamentBtn.addEventListener('click', () => UI.showView('tournamentListView'));
+
+        // Prepopulate Event
+        UI.elements.prepopulateBtn.addEventListener('click', () => {
+            UI.prepopulateForm();
+            UI.showToast('Form prepopulated!', 'info');
+        });
 
         // Active Tournament Events
         UI.elements.prevRoundBtn.addEventListener('click', () => {
