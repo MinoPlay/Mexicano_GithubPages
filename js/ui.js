@@ -22,6 +22,7 @@ const UI = (function () {
         backFromTournamentBtn: document.getElementById('backFromTournamentBtn'),
         settingsBtn: document.getElementById('settingsBtn'),
         prepopulateBtn: document.getElementById('prepopulateBtn'),
+        prepopulateBtn2: document.getElementById('prepopulateBtn2'),
 
         roundIndicator: document.getElementById('roundIndicator'),
         matchesCompleted: document.getElementById('matchesCompleted'),

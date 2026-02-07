@@ -72,6 +72,12 @@ const App = (function () {
             UI.showToast('Form prepopulated!', 'info');
         });
 
+        UI.elements.prepopulateBtn2.addEventListener('click', () => {
+            UI.showView('createTournamentView');
+            UI.prepopulateForm();
+            UI.showToast('Form prepopulated!', 'info');
+        });
+
         // Active Tournament Events
         UI.elements.prevRoundBtn.addEventListener('click', () => {
             if (displayedRoundIndex > 0) {
