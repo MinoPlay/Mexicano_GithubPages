@@ -31,12 +31,12 @@
           "team1Player2": "Eve",
           "team2Player1": "Alice",
           "team2Player2": "Heidi",
-          "team1Score": null,
-          "team2Score": null
+          "team1Score": 5,
+          "team2Score": 20
         }
       ]
     }
   ],
   "createdAt": "2026-02-12T09:43:53.993Z",
-  "updatedAt": "2026-02-12T09:44:01.343Z"
+  "updatedAt": "2026-02-12T09:44:04.981Z"
 }
