@@ -1,0 +1,42 @@
+{
+  "name": "Test Tournament 10:43",
+  "description": "",
+  "tournamentDate": "2026-02-12",
+  "players": [
+    "Frank",
+    "Bob",
+    "David",
+    "Charlie",
+    "Grace",
+    "Alice",
+    "Heidi",
+    "Eve"
+  ],
+  "rounds": [
+    {
+      "roundNumber": 1,
+      "matches": [
+        {
+          "id": 1,
+          "team1Player1": "Frank",
+          "team1Player2": "Charlie",
+          "team2Player1": "Bob",
+          "team2Player2": "David",
+          "team1Score": null,
+          "team2Score": null
+        },
+        {
+          "id": 2,
+          "team1Player1": "Grace",
+          "team1Player2": "Eve",
+          "team2Player1": "Alice",
+          "team2Player2": "Heidi",
+          "team1Score": null,
+          "team2Score": null
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-02-12T09:43:53.993Z",
+  "updatedAt": "2026-02-12T09:43:53.994Z"
+}
