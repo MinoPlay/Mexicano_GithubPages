@@ -22,8 +22,8 @@
           "team1Player2": "Charlie",
           "team2Player1": "Bob",
           "team2Player2": "David",
-          "team1Score": null,
-          "team2Score": null
+          "team1Score": 17,
+          "team2Score": 8
         },
         {
           "id": 2,
@@ -38,5 +38,5 @@
     }
   ],
   "createdAt": "2026-02-12T09:43:53.993Z",
-  "updatedAt": "2026-02-12T09:43:53.994Z"
+  "updatedAt": "2026-02-12T09:44:01.343Z"
 }
